@@ -33,7 +33,8 @@ public function productadminCatalogue(){
 
         $responseBody = json_decode($response->getBody());
 
-    dd($responseBody);
+    // dd($responseBody);
+    return view('products.showproducts');
     }
 
     

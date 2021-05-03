@@ -13,7 +13,7 @@
         <div class="col-md-12">
             <div class="table-responsive">
     
-        <table class="table align-items-center">
+        <table class="table table-bordered table-striped">
             <thead class="thead-light">
                 <tr>
                 <button class="btn btn-icon btn-primary" type="button" style="float:right;" data-toggle="modal" data-target="#businessowner">
@@ -23,45 +23,31 @@
                     <th scope="col" class="sort" data-sort="budget">Last Name</th>
                     <th scope="col" class="sort" data-sort="status">Telephone</th>
                     <th scope="col">Email</th>
-                    <th scope="col" class="sort" data-sort="completion">Action</th>
                 </tr>
             </thead>
             <tbody class="list">
-                
+                @foreach($mydata as $owner)
                 <tr>
-                    <th scope="row">
-                       
-                            <div class="media-body">
-                            </div>
-                        </div>
+                    <th scope="row"> 
+                        {{ $owner->firstName}}
                     </th>
                     <td class="budget">
+                        {{ $owner->lastname}}
                     </td>
-                    <td>
+                    <td class="budget">
+                        {{ $owner->telephone}}
                     </td>
-                    <td>
-                        <div class="d-flex align-items-center">
-                        </div>
+                    <td class="budget">
+                        {{ $owner->email}}
                     </td>
-                    <td class="text-right">
-                        <div class="dropdown">
-                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="fas fa-ellipsis-v"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                               
+
+                </tr>   
+                @endforeach
             </tbody>
         </table>
     </div>
     <button class="btn btn-icon btn-warning" type="button" style="float:right;">
-	<a href="{{route('step3')}}" style="color:white"><span class="btn-inner--icon">Next<i class="ni ni-curved-next"></i></span></a>
+	<a href="{{route('businesslines')}}" style="color:white"><span class="btn-inner--icon">Next<i class="ni ni-curved-next"></i></span></a>
 </button>
     </div>
       <!-- modal -->

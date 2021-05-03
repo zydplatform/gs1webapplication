@@ -48,7 +48,7 @@
                                 @endif
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary my-4"><a href="{{ route('businessprofile') }}" style="color:white;">{{ __('Sign in') }}</a></button>
+                                <button type="submit" class="btn btn-primary my-4"><a href="{{ route('admindashboard') }}" style="color:white;">{{ __('Sign in') }}</a></button>
                                 <button type="button" class="btn btn-primary my-4"><a href="{{ route('register') }}" style="color:white;">{{ __('Create Account') }}</a></button>
                             </div>
                         </form>

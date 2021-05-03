@@ -13,7 +13,7 @@
         <div class="col-md-12">
             <div class="table-responsive">
     
-        <table class="table align-items-center">
+        <table class="table table-bordered table-striped">
             <thead class="thead-light">
                 <tr>
                 <button class="btn btn-icon btn-primary" type="button" style="float:right;" data-toggle="modal" data-target="#businessowner">
@@ -21,39 +21,25 @@
 </button>
                     <th scope="col" class="sort" data-sort="name">Business Type Code</th>
                     <th scope="col" class="sort" data-sort="budget">Business Type</th>
-                    <th scope="col" class="sort" data-sort="completion">Action</th>
                 </tr>
             </thead>
             <tbody class="list">
-                
+                @foreach($mydata as $businesstype)
                 <tr>
-                    <th scope="row">
-                       
-                            <div class="media-body">
-                            </div>
-                        </div>
+                    <th scope="row"> 
+                        {{ $businesstype->code}}
                     </th>
                     <td class="budget">
+                        {{ $businesstype->type}}
                     </td>
-                    <td class="text-right">
-                        <div class="dropdown">
-                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="fas fa-ellipsis-v"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                               
+                   
+                </tr>   
+                @endforeach
             </tbody>
         </table>
     </div>
     <button class="btn btn-icon btn-warning" type="button" style="float:right;">
-	<a href="{{route('step5')}}" style="color:white"><span class="btn-inner--icon">Next<i class="ni ni-curved-next"></i></span></a>
+	<a href="{{route('admindashboard')}}" style="color:white"><span class="btn-inner--icon">Finish<i class="ni ni-curved-next"></i></span></a>
 </button>
     </div>
       <!-- modal -->
@@ -72,11 +58,20 @@
         @csrf
     <div class="form-group">
         <label for="example-search-input" class="form-control-label">Business Type Code</label>
-        <input class="form-control" type="text" value="" id="code" name="code">
+        <select class="form-control"  id="code" name="code" required>  
+      @foreach($mydata as $businesstype)  
+      <option value="{{$businesstype->code}}">{{$businesstype->code}}</option>
+      @endforeach
+    </select>
     </div>
     <div class="form-group">
         <label for="example-search-input" class="form-control-label">Business Type</label>
-        <input class="form-control" type="text" value="" id="type" name="type">
+        <select class="form-control"  id="type" name="type" required>  
+      @foreach($mydata as $businesstype)  
+      <option value="{{$businesstype->type}}">{{$businesstype->type}}</option>
+      @endforeach
+    </select>
+     
     </div>
     
       <button type="submit" class="btn btn-block btn-success">Save</button>

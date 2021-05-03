@@ -5,7 +5,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Brand -->
-        <a class="navbar-brand pt-0" href="{{ route('dashboard') }}">
+        <a class="navbar-brand pt-0" href="{{ route('admindashboard') }}">
             <img src="{{ asset('argon') }}/img/brand/newlogo1.png" class="navbar-brand-img" alt="gs1 uganda logo">
         </a>
         <!-- User -->
@@ -50,7 +50,7 @@
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
                     <div class="col-6 collapse-brand">
-                        <a href="{{ route('dashboard') }}">
+                        <a href="{{ route('admindashboard') }}">
                             <img src="{{ asset('argon') }}/img/brand/newlogo1.png">
                         </a>
                     </div>
@@ -76,7 +76,7 @@
             <!-- Navigation -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('dashboard') }}">
+                    <a class="nav-link" href="{{ route('admindashboard') }}">
                          {{ __('GS1 Dashboard') }}
                     </a>
                 </li>
@@ -110,7 +110,7 @@
                     <div class="collapse show" id="navbar-examples1">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('businessprofile') }}">
+                                <a class="nav-link" href="{{ route('getprofile') }}">
                                     {{ __('Business Profiles ') }}
                                 </a>
                             </li>
@@ -128,13 +128,8 @@
                     <div class="collapse show" id="navbar-examples1">
                         <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
-                                <a class="nav-link" href="{{ route('addproducts') }}">
-                                    {{ __('Add') }}
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('addcompany') }}">
-                                    {{ __('Show All ') }}
+                                <a class="nav-link" href="{{ route('businessproducts') }}">
+                                    {{ __('Show products') }}
                                 </a>
                             </li>
                             

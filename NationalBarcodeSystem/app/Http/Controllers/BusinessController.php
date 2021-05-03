@@ -26,7 +26,18 @@ class BusinessController extends Controller
     }
 
     public function Company(){
-        return view('addcompanies');
+        $client = new Client([
+            'base_uri' => 'http://83.136.248.186:1701/']
+        );
+
+        $response = $client->request('GET', 'businessProfiles/all', [
+            'verify'  => false,
+        ]);
+
+        $responseBody = $response->getBody()->getContents();
+        $businessData = json_decode($responseBody);
+        $mydata = $businessData->data;
+        return view('addcompanies', ['mydata'=>$mydata]);
     }
     public function FinishBusiness(){
         return view('finishbusiness');
@@ -40,7 +51,7 @@ class BusinessController extends Controller
         $response = $client->request('POST', 'businessProfiles',
         ['json'=>[
         'businessName' => $request->businessName,
-        'businessOwnership' => $request->businessOwnership,
+        'businessOwnerShip' => $request->businessOwnerShip,
         // 'businessOwner' => 'Mukwano properties',
         'registrationNumber' => $request->registrationNumber,
         'businessEmail' => $request->businessEmail,
@@ -51,7 +62,7 @@ class BusinessController extends Controller
         // 'country' => ['countryCode'=>'256','countryName'=>'Uganda'], 
         ]
         ]);
-        $responseBody =json_encode($response);
+        // $responseBody =json_encode($response);
         // dd($responseBody);
         $data = $response->getBody()->getContents();
         $character = json_decode($data);
@@ -59,7 +70,8 @@ class BusinessController extends Controller
         $decodedStatus = $character->status;
         $decodedMessg = $character->message;
         // echo $response->getStatusCode();
-        return redirect()->route('step2');
+        return redirect()->route('businessowners');
+        // return redirect()->back();
     
         
     }
@@ -115,9 +127,14 @@ class BusinessController extends Controller
             'verify'  => false,
         ]);
 
-        $responseBody = json_decode($response->getBody());
+        $responseBody = $response->getBody()->getContents();
+        $businessData = json_decode($responseBody);
+        $mydata = $businessData->data;
 
-    dd($responseBody);
+    // dd($responseBody);
+
+        return view('admin.showbusinesses', ['mydata' => $mydata]);
+
     }
     //get districts
     public function getDistricts()
@@ -193,9 +210,12 @@ class BusinessController extends Controller
             'verify'  => false,
         ]);
 
-        $responseBody = json_decode($response->getBody());
+        $responseBody = $response->getBody()->getContents();
+    $businessData = json_decode($responseBody);
+    $mydata = $businessData->data;
 
-    dd($responseBody);
+// dd($responseBody);
+    return view('admin.step3business', ['mydata' => $mydata]);
     }
     //businessLineMappings/all
     public function businessLineMappings()
@@ -225,9 +245,14 @@ class BusinessController extends Controller
             'verify'  => false,
         ]);
 
-        $responseBody = json_decode($response->getBody());
+        
+    
+    $responseBody = $response->getBody()->getContents();
+    $businessData = json_decode($responseBody);
+    $mydata = $businessData->data;
 
-    dd($responseBody);
+// dd($responseBody);
+    return view('admin.step2business', ['mydata' => $mydata]);
     }
 
 //businessTypes/all
@@ -242,9 +267,12 @@ class BusinessController extends Controller
             'verify'  => false,
         ]);
 
-        $responseBody = json_decode($response->getBody());
-
-    dd($responseBody);
+        $responseBody = $response->getBody()->getContents();
+        $businessData = json_decode($responseBody);
+        $mydata = $businessData->data;
+    
+    // dd($responseBody);
+        return view('admin.step4business', ['mydata' => $mydata]);
     }
 
     //businessMappingsTypes/all
@@ -281,8 +309,8 @@ class BusinessController extends Controller
         // dd($responseBody);
         // echo $response->getBody();
         // echo $response->getStatusCode();
-        // return redirect()->back();
-        return redirect()->route('step4');
+        return redirect()->back();
+        // return redirect()->route('step4');
     }
 
     //create business owners
@@ -306,9 +334,9 @@ class BusinessController extends Controller
         // dd($responseBody);
         // echo $response->getBody();
         // echo $response->getStatusCode();
-        // return redirect()->back();
+        return redirect()->back();
         // return view('admin.step2business', ['businessowners'=>$businessowners]);
-        return redirect()->route('step3');
+        // return redirect()->route('step3');
     }
 
     //create business typemappings
@@ -348,8 +376,8 @@ class BusinessController extends Controller
         // dd($responseBody);
         // echo $response->getBody();
         // echo $response->getStatusCode();
-        // return redirect()->back();
-        return redirect()->route('step4');
+        return redirect()->back();
+        // return redirect()->route('step4');
     }
 
     //business steps

@@ -20,7 +20,12 @@
       </div>
       <div class="form-group">
       <label for="">Business Ownership</label>
-        <input type="text" class="form-control" id="businessOwnership" name="businessOwnership" placeholder="" required>
+      <select class="form-control"  id="businessOwnerShip" name="businessOwnerShip" required>  
+      @foreach($mydata as $businessowner)  
+      <option value="{{$businessowner->businessOwnerShip}}">{{$businessowner->businessOwnerShip}}</option>
+      @endforeach
+    </select>
+        <!-- <input type="text" class="form-control" id="businessOwnership" name="businessOwnership" placeholder="" required> -->
       </div>
       <div class="form-group">
       <label for="">Business Physical Address</label>
@@ -29,7 +34,7 @@
     
           <div class="form-group">
       <label for="">Business Email</label>
-        <input type="email" class="form-control" id="businessEmail" email="businessEmail" placeholder="" required>
+        <input type="email" class="form-control" id="businessEmail" name="businessEmail" placeholder="" required>
       </div>
     
       </div>
